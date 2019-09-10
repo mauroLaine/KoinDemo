@@ -13,7 +13,7 @@ class CurrenciesAdapter : RecyclerView.Adapter<ViewHolder>() {
     var currencies = listOf<MyCurrency>()
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_row, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_currency, parent, false)
         return ViewHolder(view)
     }
 
