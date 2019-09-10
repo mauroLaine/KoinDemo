@@ -1,4 +1,4 @@
-package com.laine.mauro.koindemo.repository
+package com.laine.mauro.koindemo.data
 
 import com.google.gson.Gson
 import com.laine.mauro.koindemo.model.MyCurrency
