@@ -8,11 +8,12 @@ import com.laine.mauro.koindemo.data.DataRepository
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.get
 import org.koin.android.ext.android.inject
+import org.koin.core.qualifier.named
 
 class MainActivity : AppCompatActivity() {
 
     private val currenciesAdapter: CurrenciesAdapter by inject()
-    private val dataRepositoryImpl: DataRepository = get()
+    private val dataRepositoryFactory: DataRepository by inject(named("local"))
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         setUpCurrenciesRecyclerView()
 
         val currenciesJson = resources.openRawResource(R.raw.currencies).bufferedReader().use { it.readText() }
-        val items = dataRepositoryImpl.getCurrencies(currenciesJson)
+        val items = dataRepositoryFactory.getCurrencies(currenciesJson)
         currenciesAdapter.currencies = items
 
     }
