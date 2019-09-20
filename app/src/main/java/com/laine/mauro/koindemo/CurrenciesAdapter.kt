@@ -10,7 +10,7 @@ import com.laine.mauro.koindemo.model.MyCurrency
 
 class CurrenciesAdapter : RecyclerView.Adapter<ViewHolder>() {
 
-    var currencies = listOf<MyCurrency>()
+    var currencies: List<MyCurrency>? = listOf<MyCurrency>()
 
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_currency, parent, false)
@@ -18,11 +18,11 @@ class CurrenciesAdapter : RecyclerView.Adapter<ViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return currencies.size
+        return currencies?.size ?: 0
     }
 
     override fun onBindViewHolder(view: ViewHolder, position: Int) {
-        view.bindData(currencies.get(position))
+        view.bindData(currencies?.get(position))
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -35,9 +35,9 @@ class CurrenciesAdapter : RecyclerView.Adapter<ViewHolder>() {
             symbol = itemView.findViewById(R.id.text_symbol)
         }
 
-        fun bindData(myCurrency: MyCurrency) {
-            name.text = myCurrency.name
-            symbol.text = myCurrency.symbol
+        fun bindData(myCurrency: MyCurrency?) {
+            name.text = myCurrency?.name
+            symbol.text = myCurrency?.symbol
         }
     }
 }

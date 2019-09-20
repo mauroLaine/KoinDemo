@@ -1,18 +1,19 @@
 package com.laine.mauro.koindemo
 
+import android.arch.lifecycle.Observer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
-import com.laine.mauro.koindemo.data.DataRepository
+import com.laine.mauro.koindemo.presenter.CurrenciesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
-import org.koin.core.qualifier.named
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private val currenciesAdapter: CurrenciesAdapter by inject()
-    private val dataRepositoryFactory: DataRepository by inject(named("local"))
+    private val currenciesViewModel: CurrenciesViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,10 +21,12 @@ class MainActivity : AppCompatActivity() {
 
         setUpCurrenciesRecyclerView()
 
-        val currenciesJson = resources.openRawResource(R.raw.currencies).bufferedReader().use { it.readText() }
-        val items = dataRepositoryFactory.getCurrencies(currenciesJson)
-        currenciesAdapter.currencies = items
+        currenciesViewModel.observeCurrencies().observe(this, Observer {
+            currenciesAdapter.currencies = it
+        })
 
+        val currenciesJson = resources.openRawResource(R.raw.currencies).bufferedReader().use { it.readText() }
+        currenciesViewModel.retrieveCurrencies(currenciesJson)
     }
 
     private fun setUpCurrenciesRecyclerView() {
