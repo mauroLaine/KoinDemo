@@ -14,6 +14,7 @@ import org.koin.dsl.module
 
 val applicationModule = module {
     single { Gson() }
+    single { UrlHelper() }
     factory { CurrenciesAdapter() }
     factory<DataRepository>(named("local")) { LocalRepositoryImpl(get()) }
     factory<DataRepository>(named("remote")) { RemoteRepositoryImpl() }

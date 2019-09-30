@@ -23,22 +23,13 @@ class CurrenciesAdapter : RecyclerView.Adapter<ViewHolder>() {
     }
 
     override fun onBindViewHolder(view: ViewHolder, position: Int) {
-        view.bindData(currencies?.get(position))
+        val currency = currencies?.get(position)
+        currency?.let {
+            view.currencyView.setCurrency(it)
+        }
     }
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        val name: TextView
-        val symbol: TextView
-
-        init {
-            name = itemView.findViewById(R.id.text_name)
-            symbol = itemView.findViewById(R.id.text_symbol)
-        }
-
-        fun bindData(myCurrency: MyCurrency?) {
-            name.text = myCurrency?.name
-            symbol.text = myCurrency?.symbol
-        }
+        val currencyView: CurrencyView = itemView.findViewById(R.id.view_currency)
     }
 }
