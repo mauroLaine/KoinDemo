@@ -1,11 +1,12 @@
-package com.laine.mauro.koindemo
+package com.laine.mauro.koindemo.presenter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.laine.mauro.koindemo.CurrenciesAdapter.ViewHolder
+import com.laine.mauro.koindemo.R
+import com.laine.mauro.koindemo.presenter.CurrenciesAdapter.ViewHolder
 import com.laine.mauro.koindemo.model.MyCurrency
 
 class CurrenciesAdapter : RecyclerView.Adapter<ViewHolder>() {

@@ -5,6 +5,7 @@ import com.laine.mauro.koindemo.data.DataRepository
 import com.laine.mauro.koindemo.data.DataRepositoryFactory
 import com.laine.mauro.koindemo.data.LocalRepositoryImpl
 import com.laine.mauro.koindemo.data.RemoteRepositoryImpl
+import com.laine.mauro.koindemo.presenter.CurrenciesAdapter
 import com.laine.mauro.koindemo.presenter.CurrenciesViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.core.qualifier.named
