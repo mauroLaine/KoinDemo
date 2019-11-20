@@ -5,13 +5,13 @@ import android.net.Uri
 import android.support.customtabs.CustomTabsIntent
 import android.support.v4.content.ContextCompat
 
-class UrlHelper(private val currencyUrl: String) {
+class UrlHelper(private val baseUrl: String) {
 
-    fun getCurrencyUrl(): String {
-        return currencyUrl;
+    fun launchCurrencyUrl(context: Context, slug: String) {
+        lanchUrl(context, Uri.parse("$baseUrl$slug"))
     }
 
-    fun lanchUrl(context: Context, uri: Uri) {
+    private fun lanchUrl(context: Context, uri: Uri) {
         val customTab = CustomTabsIntent.Builder()
             .addDefaultShareMenuItem()
             .setToolbarColor(ContextCompat.getColor(context, R.color.colorPrimary))

@@ -1,7 +1,6 @@
 package com.laine.mauro.koindemo.presenter
 
 import android.content.Context
-import android.net.Uri
 import android.util.AttributeSet
 import android.view.View
 import android.widget.LinearLayout
@@ -29,10 +28,7 @@ class CurrencyView @JvmOverloads constructor(
         text_name.text = currency.name
         text_symbol.text = currency.symbol
         setOnClickListener {
-            urlHelper.lanchUrl(
-                context,
-                Uri.parse("${urlHelper.getCurrencyUrl()}${currency.slug}")
-            )
+            urlHelper.launchCurrencyUrl(context, currency.slug)
         }
     }
 }
