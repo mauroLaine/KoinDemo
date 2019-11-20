@@ -12,7 +12,11 @@ import kotlinx.android.synthetic.main.view_currency.view.*
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class CurrencyView @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+class CurrencyView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) :
     LinearLayout(context, attrs, defStyleAttr), KoinComponent {
 
     val urlHelper: UrlHelper by inject()
@@ -25,7 +29,10 @@ class CurrencyView @JvmOverloads constructor(context: Context, attrs: AttributeS
         text_name.text = currency.name
         text_symbol.text = currency.symbol
         setOnClickListener {
-            urlHelper.lanchUrl(context, Uri.parse("https://coinmarketcap.com/currencies/${currency.slug}"))
+            urlHelper.lanchUrl(
+                context,
+                Uri.parse("https://coinmarketcap.com/currencies/${currency.slug}")
+            )
         }
     }
 }
