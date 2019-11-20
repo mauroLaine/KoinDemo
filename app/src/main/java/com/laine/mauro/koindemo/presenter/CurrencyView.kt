@@ -31,7 +31,7 @@ class CurrencyView @JvmOverloads constructor(
         setOnClickListener {
             urlHelper.lanchUrl(
                 context,
-                Uri.parse("https://coinmarketcap.com/currencies/${currency.slug}")
+                Uri.parse("${urlHelper.getCurrencyUrl()}${currency.slug}")
             )
         }
     }
