@@ -6,7 +6,10 @@ import android.arch.lifecycle.ViewModel
 import com.laine.mauro.koindemo.data.DataRepositoryFactory
 import com.laine.mauro.koindemo.model.MyCurrency
 
-class CurrenciesViewModel constructor(private val dataRepositoryFactory: DataRepositoryFactory) : ViewModel() {
+class CurrenciesViewModel constructor(
+    private val dataRepositoryFactory: DataRepositoryFactory,
+    private val jsonString: String
+) : ViewModel() {
 
     val currencyLiveData = MutableLiveData<List<MyCurrency>>()
 
@@ -14,7 +17,7 @@ class CurrenciesViewModel constructor(private val dataRepositoryFactory: DataRep
         return currencyLiveData
     }
 
-    fun retrieveCurrencies(jsonString: String) {
+    fun retrieveCurrencies() {
         val data = dataRepositoryFactory.retrieveLocalSource().getCurrencies(jsonString)
         currencyLiveData.postValue(data)
     }
