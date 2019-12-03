@@ -19,5 +19,5 @@ val applicationModule = module {
     factory<DataRepository>(named("local")) { LocalRepositoryImpl(get()) }
     factory<DataRepository>(named("remote")) { RemoteRepositoryImpl() }
     factory { DataRepositoryFactory(get(named("local")), get(named("remote"))) }
-    viewModel { CurrenciesViewModel(get()) }
+    viewModel { (jsonString: String) -> CurrenciesViewModel(get(), jsonString) }
 }
