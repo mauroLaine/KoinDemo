@@ -10,11 +10,16 @@ import com.laine.mauro.koindemo.presenter.CurrenciesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class MainActivity : AppCompatActivity() {
 
     private val currenciesAdapter: CurrenciesAdapter by inject()
-    private val currenciesViewModel: CurrenciesViewModel by viewModel()
+    private val currenciesViewModel: CurrenciesViewModel by viewModel {
+        val currenciesJson =
+            resources.openRawResource(R.raw.currencies).bufferedReader().use { it.readText() }
+        parametersOf(currenciesJson)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +31,6 @@ class MainActivity : AppCompatActivity() {
             currenciesAdapter.currencies = it
         })
 
-        val currenciesJson =
-            resources.openRawResource(R.raw.currencies).bufferedReader().use { it.readText() }
         currenciesViewModel.retrieveCurrencies()
     }
 
